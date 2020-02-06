@@ -246,7 +246,10 @@ def get_instances(serials):
     """
     results = []
     for s in serials:
-        results.append(AndroidDevice(s))
+        try:
+            results.append(AndroidDevice(s))
+        except adb.AdbError:
+            continue
     return results
 
 
